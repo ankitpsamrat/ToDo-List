@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const itemName = itemInput.value.trim();
         if (itemName.length === 0) {
-            showAlert("Please enter name.", "alert-danger");
+            showAlert("Please enter item.", "alert-danger");
             return;
         } else {
 
