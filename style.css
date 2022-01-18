@@ -1,14 +1,22 @@
+body {
+    background-color: aqua;
+}
+
+h3 {
+    font-size: xx-large;
+    font-weight: bold;
+}
 
 .green {
-    color: lightgreen;
+    color: rgb(19, 231, 19);
 }
 
 .red {
-    color: lightcoral;
+    color: rgb(228, 18, 18);
 }
 
 .blue {
-    color: skyblue
+    color: rgb(16, 169, 230)
 }
 
 #itemList {

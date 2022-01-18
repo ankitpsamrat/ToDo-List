@@ -8,7 +8,7 @@ const messageDiv = document.querySelector("#message");
 const clearButton = document.querySelector("#clearBtn");
 const filters = document.querySelectorAll(".nav-item");
 
-// create empty item list
+// create empty task list
 
 let todoItems = [];
 
@@ -24,7 +24,7 @@ const showAlert = function (message, msgClass) {
     return;
 };
 
-// filter tab items
+// filter tab task
 
 const getItemsFilter = function (type) {
     let filterItems = [];
@@ -42,7 +42,7 @@ const getItemsFilter = function (type) {
     getList(filterItems);
 };
 
-// update item
+// update task
 
 const updateItem = function (itemIndex, newValue) {
     console.log(itemIndex);
@@ -52,14 +52,14 @@ const updateItem = function (itemIndex, newValue) {
     setLocalStorage(todoItems);
 };
 
-// remove/delete item
+// remove/delete task
 
 const removeItem = function (item) {
     const removeIndex = todoItems.indexOf(item);
     todoItems.splice(removeIndex, 1);
 };
 
-// handle item
+// handle task
 
 const handleItem = function (itemData) {
     const items = document.querySelectorAll(".list-group-item");
@@ -68,7 +68,7 @@ const handleItem = function (itemData) {
             item.querySelector(".title").getAttribute("data-time") == itemData.addedAt
         ) {
 
-            // done item
+            // done task
 
             item.querySelector("[data-done]").addEventListener("click", function (e) {
                 e.preventDefault();
@@ -84,7 +84,7 @@ const handleItem = function (itemData) {
                 getItemsFilter(filterType);
             });
 
-            // edit item
+            // edit task
 
             item.querySelector("[data-edit]").addEventListener("click", function (e) {
                 e.preventDefault();
@@ -93,14 +93,15 @@ const handleItem = function (itemData) {
                 return todoItems;
             });
 
-            //delete item
+            //delete task
+
             item.querySelector("[data-delete]").addEventListener("click", function (e) {
                 e.preventDefault();
                 if (confirm("Are you sure want to delete?")) {
                     itemList.removeChild(item);
                     removeItem(item);
                     setLocalStorage(todoItems);
-                    showAlert("Item has been deleted.", "alert-success");
+                    showAlert("Task has been deleted.", "alert-success");
                     return todoItems.filter((item) => item != itemData);
                 }
             });
@@ -108,7 +109,7 @@ const handleItem = function (itemData) {
     });
 };
 
-// get list items
+// get task list
 
 const getList = function (todoItems) {
     itemList.innerHTML = "";
@@ -161,20 +162,20 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const itemName = itemInput.value.trim();
         if (itemName.length === 0) {
-            showAlert("Please enter item.", "alert-danger");
+            showAlert("Please enter task.", "alert-danger");
             return;
         } else {
 
-            // update existing item
+            // update existing task
 
             const currenItemIndex = document.querySelector("#citem").value;
             if (currenItemIndex) {
                 updateItem(currenItemIndex, itemName);
                 document.querySelector("#citem").value = "";
-                showAlert("Item has been updated.", "alert-success");
+                showAlert("Task has been updated.", "alert-success");
             } else {
 
-                // add new item 
+                // add new task
 
                 const itemObj = {
                     name: itemName,
@@ -186,12 +187,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 // set local storage
 
                 setLocalStorage(todoItems);
-                showAlert("New item has been added.", "alert-success");
+                showAlert("New task has been added.", "alert-success");
             }
 
             getList(todoItems);
 
-            // get list of all items
+            // get list of all task
 
         }
         console.log(todoItems);
@@ -213,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // load items
+    // load task
 
     getLocalStorage();
 });
